@@ -12,6 +12,7 @@ const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
 const btnScrollTo = document.querySelector('.btn--scroll-to');
 // Sections
+const sections = document.querySelectorAll('section')
 const section1 = document.querySelector('#section--1');
 // Navigation
 const navLinks = document.querySelector('.nav__links');
@@ -118,6 +119,27 @@ tabsContainer.addEventListener('click', e => {
   clicked.classList.add('operations__tab--active')
   // Active content area
   document.querySelector(`.operations__content--${clicked.dataset.tab}`).classList.add('operations__content--active');
+})
+
+/* REVEALING ELEMENTS ON SCROLL */
+const revealSection = (entries, observer) => {
+  const [entry] = entries;
+  console.log(entry);
+
+  if(!entry.isIntersecting) return;
+
+  entry.target.classList.remove('section--hidden');
+  observer.unobserve(entry.target);
+};
+
+const sectionObserve = new IntersectionObserver( revealSection, {
+  root: null,
+  threshold: 0.15,
+});
+
+sections.forEach( section => {
+  sectionObserve.observe(section);
+  section.classList.add('section--hidden')
 })
 
 /****************************************************************************************
