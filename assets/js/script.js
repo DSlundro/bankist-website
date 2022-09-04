@@ -86,7 +86,7 @@ modals()
 // 2. Determine what element originated the event
 navLinks.addEventListener('click', e =>{
   // Matching strategy
-  if(e.target.classList.contains('nav__link')){
+  if(e.target.classList.contains('nav__link') && !e.target.classList.contains('nav__link--btn')){
     e.preventDefault();
     // Target returns the element that triggered the event
     const id = e.target.getAttribute('href');
