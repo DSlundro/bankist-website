@@ -13,6 +13,10 @@ const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
 const btnSubmit = document.querySelector('.btn--submit-modal');
 const btnScrollTo = document.querySelector('.btn--scroll-to');
+// Form
+const formName = document.querySelector('.form--name');
+const formSurname = document.querySelector('.form--surname');
+const formEmail = document.querySelector('.form--email');
 // Sections
 const sections = document.querySelectorAll('section');
 const section1 = document.querySelector('#section--1');
@@ -57,7 +61,12 @@ const modals = () => {
 
   for (let i = 0; i < btnsOpenModal.length; i++){
     btnsOpenModal[i].addEventListener('click', openModal);
-    btnSubmit.addEventListener('click', closeModal);
+    btnSubmit.addEventListener('click', e => {
+      formName.value = '';
+      formSurname.value = '';
+      formEmail.value = '';
+      closeModal()
+    });
     btnCloseModal.addEventListener('click', closeModal);
     overlay.addEventListener('click', closeModal);
   };
